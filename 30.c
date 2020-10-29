@@ -3,14 +3,17 @@
 #include <stdint.h>
 
 typedef uint8_t u8;
-typedef uint16_t u16;
+typedef uint64_t u64;
 
+/* prints a row */
 void print(u8 *a)
 {
         for (u8 i = 0; i < 169; i++)
                 printf("%d", a[i]);
+        puts("\r");
 }
 
+/* quite literally the definition of rule 30 */
 u8 rule30(u8 a[3])
 {
         if (a[0] == 1 && a[1] == 1 && a[2] == 1)
@@ -31,33 +34,62 @@ u8 rule30(u8 a[3])
                 return 0;
 }
 
-
-int main(void) 
+/* predecessor of j in additive group mod N */
+u8 pred(u8 j, u8 N)
 {
-        u8 in[3] = {1, 1, 1}; 
-        printf("%d\n", rule30(in));
-        u8 in1[3] = {1, 1, 0}; 
-        printf("%d\n", rule30(in1));
-        u8 in2[3] = {1, 0, 1}; 
-        printf("%d\n", rule30(in2));
-        u8 in3[3] = {1, 0, 0}; 
-        printf("%d\n", rule30(in3));
-        u8 in4[3] = {0, 1, 1}; 
-        printf("%d\n", rule30(in4));
-        u8 in5[3] = {0, 1, 0}; 
-        printf("%d\n", rule30(in5));
-        u8 in6[3] = {0, 0, 1}; 
-        printf("%d\n", rule30(in6));
-        u8 in7[3] = {0, 0, 0}; 
-        printf("%d\n", rule30(in7));
-        return 0;
+        if (j == 0)
+                return N - 1;
+        else
+                return j - 1;
 }
 
-/*
- *char **a = malloc(169 * sizeof(char *));
- *     for (int j = 0; j < 1024; j++) {
- *              a[j] = malloc(169);
- *     }
- */
+/* successor of j in additive group mod N */
+u8 succ(u8 j, u8 N)
+{
+        if (j == N - 1)
+                return 0;
+        else
+                return j + 1;
+}
 
- 
+
+int main(int argc, char* argv[]) 
+{
+
+        /*
+         * dimentions:
+         * M - down \/ 
+         * N - to the right > 
+         */
+
+        u64 const M = atol(argv[1]);
+        u8  const N = atoi(argv[2]);
+
+
+        /* index i is for a row; index j is for an element of a row; */
+        u8 **rows = malloc(M * sizeof(u8 *));
+        for (u64 i = 0; i < M; i++) 
+                rows[i] = calloc(N, sizeof(u8 *));
+        
+
+        /* some initial conditions that are enough for fun */
+        rows[0][2] = 1; 
+        rows[0][4] = 1; 
+        rows[0][5] = 1; 
+        rows[0][7] = 1; 
+        
+        /*apply rule & print */
+        for (u64 i = 0; i < M - 1; i++) {
+                for (u8 j = 0; j < N - 1; j++) {
+                        u8 a[3] = {rows[i][pred(j, N)], rows[i][j], rows[i][succ(j, N)]};
+                        rows[i + 1][j] = rule30(a);
+                }
+                print(rows[i]);
+        }
+
+        /* deallocation */
+        for (u64 i = 0; i < M; i++) 
+                free(rows[i]);
+        free(rows); 
+}
+
