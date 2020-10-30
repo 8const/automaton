@@ -1,12 +1,14 @@
-I'm witing an elementary cellular automaton;
+I'm witing an elementary cellular automaton.
 
-Currently rule 30 because I've heard it's fancy;
+Currently rule 30 because I've heard it's fancy.
 
-But it's like super easy to generalise;
+But it's like super easy to generalise.
 
-It will print 1s and 0s in shell;
+It will print 1s and 0s in shell.
 
-I use this an only this as a reference:
+I use this an only this as a reference.
+
 (because it's fun)
+
 
         https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
