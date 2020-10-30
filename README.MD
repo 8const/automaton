@@ -1,14 +1,26 @@
-I'm witing an elementary cellular automaton.
+A shell app for UNIX-like environmets that prints all 256 cellular automatons with beautiful ASCII characters.
 
-Currently rule 30 because I've heard it's fancy.
+Compile main.c like:
 
-But it's like super easy to generalise.
+        $gcc main.c -o cell
+        
+Run it like:
 
-It will print 1s and 0s in shell.
+        $./cell 22 33 100
+        
+22 stands for rule 22. 
+Generally it's any 8 bit unsigned int. 
 
-I use this and only this as a reference:
+33 is the number of rows of text output.
+It's only limited by being 64 bit unsigned int.
+Probably you want it to be super huge like in thousands.
 
-(because it's fun)
+100 is the length of a row in characters.
+It's an 8 bit unsigned int. 
+I generally use 200 on my laptop full screen with pretty small font.
 
+Running as in the example you should a nice Serpinsky triangle.
+
+A great short well-illustrated reference:
 
         https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
