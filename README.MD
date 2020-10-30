@@ -6,7 +6,7 @@ But it's like super easy to generalise.
 
 It will print 1s and 0s in shell.
 
-I use this an only this as a reference.
+I use this and only this as a reference.
 
 (because it's fun)
 
