@@ -1,66 +1,6 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <unistd.h>
-
-typedef uint8_t u8;
-typedef uint64_t u64;
-
-/*
- * returns 1 if bit in byte, 0 otherwise
- * this is used to decode binary represetation of a rule number
- */
-
-u8 bit(u8 byte, u8 bit) 
-{
-        switch (bit) {
-
-        case 7:
-                return (byte & 1);
-        case 6:
-                return (byte & 2) / 2;
-        case 5:
-                return (byte & 4) / 4;
-        case 4:
-                return (byte & 8) / 8;
-        case 3:
-                return (byte & 16) / 16;
-        case 2:
-                return (byte & 32) / 32;
-        case 1:
-                return (byte & 64) / 64;
-        case 0:
-                return (byte & 128) / 128;
-        
-       }
-}
-
-
-
-/* quite literally the definition of rule n */
-u8 rule(u8 a[3], u8 n)
-{
-        if (a[0] && a[1] && a[2])
-                return bit(n, 0);
-
-        if (a[0] && a[1] && !a[2])
-                 return bit(n, 1);
-
-        if (a[0] && !a[1] && a[2])
-                 return bit(n, 2);
-
-        if (a[0] && !a[1] && !a[2])
-                return bit(n, 3);
-
-        if (!a[0] && a[1] && a[2])
-                return bit(n, 4);
-
-        if (!a[0] && a[1] && !a[2])
-                return bit(n, 5);
-
-        if (!a[0] && !a[1] && a[2])
-                return bit(n, 6);
-}
+#include "rule.h"
 
 /* prints a row */
 void print(u8 *a, u8 N)
@@ -90,7 +30,7 @@ int main(int argc, char* argv[])
         "Second arg (33) is the number of rows M printed.\n\t"
         "Third arg (100) is the number of chars in row N.\n"
 "Running like above should produce a gorgerous Serpinsky triangle.\n"
-"If it's a messi, may be 101 is too wide for your screen and text size.\n");
+"If it's a mess, may be 100 is too wide for your screen and text size.\n");
 
                 return 0;
 
@@ -110,7 +50,7 @@ int main(int argc, char* argv[])
                 /* index i is for a row; index j is for an element of a row; */
                 u8 **rows = malloc(M * sizeof(u8 *));
                 for (u64 i = 0; i < M; i++) 
-                        rows[i] = calloc(N, sizeof(u8 *));
+                        rows[i] = calloc(N, sizeof(u8));
 
                 /*
                  * add some interesting initial conditions here
@@ -122,7 +62,7 @@ int main(int argc, char* argv[])
 
                 /*apply rule & print */
                 for (u64 i = 0; i < M - 1; i++) {
-                        for (u8 j = 0; j < N; j++) {
+                        for (u8 j = 1; j < N - 1; j++) {
                      
 /*
  * a[3] are the 3 cells determining rows[i + 1][j] together with the rule
