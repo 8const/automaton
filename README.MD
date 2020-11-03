@@ -1,8 +1,8 @@
 A shell app for UNIX-like environmets that prints all 256 cellular automatons with beautiful ASCII characters.
 
-Compile main.c like:
+Compile like: 
 
-        $gcc main.c -o cell
+        $ gcc -Wall -g main.c rule.c -o cell
         
 Run it like:
 
