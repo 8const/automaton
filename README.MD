@@ -2,7 +2,7 @@ A shell app for UNIX-like environmets that prints all 256 cellular automatons wi
 
 Compile like: 
 
-        $ gcc -Wall -g main.c rule.c -o cell
+        $ gcc -Wall main.c rule.c -o cell
         
 Run it like:
 
