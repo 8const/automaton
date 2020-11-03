@@ -6,7 +6,7 @@ Compile like:
         
 Run it like:
 
-        $./cell 22 33 100
+        $ ./cell 22 33 100
         
 22 stands for rule 22. 
 Generally it's any 8 bit unsigned int. 
