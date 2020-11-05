@@ -36,6 +36,7 @@ int main(int argc, char* argv[])
 
         } else {
 
+
                 /*
                  * R - rule number from {0..256}
                  * M & N - dimentions:
@@ -44,10 +45,31 @@ int main(int argc, char* argv[])
                  */
 
                 const u8  R = atoi(argv[1]);
-                const u64 M = atol(argv[2]);
+                const u64 M = atol(argv[2]) + 1;
                 const u8  N = atoi(argv[3]);
 
-                /* index i is for a row; index j is for an element of a row; */
+                /* predescessor of j in additive group mod N */
+                u8 pred(u8 j, u8 N)
+                {
+
+                        if (!j) 
+                                return N - 1;
+                        else
+                                return j - 1;
+                }
+                
+                /* successor of j in additive group mod N */
+                u8 succ(u8 j, u8 N)
+                {
+                        if (j == N - 1)
+                                return 0;
+                        else
+                                return j + 1;
+                }
+
+
+
+               /* index i is for a row; index j is for an element of a row; */
                 u8 **rows = malloc(M * sizeof(u8 *));
                 for (u64 i = 0; i < M; i++) 
                         rows[i] = calloc(N, sizeof(u8));
@@ -60,13 +82,14 @@ int main(int argc, char* argv[])
                  
                  rows[0][N / 2] = 1; 
 
-                /*apply rule & print */
+                        /*apply rule & print */
+
                 for (u64 i = 0; i < M - 1; i++) {
-                        for (u8 j = 1; j < N - 1; j++) {
+                        for (u8 j = 0; j < N; j++) {
                      
 /*
  * a[3] are the 3 cells determining rows[i + 1][j] together with the rule
- * modular arithmetic is used to topologically glue 
+ * pred/succ are used to topologically glue 
  * the left and the wright edge together
  * so what prints out actualy lives on the surface of a cylinder
  * and not a finite width rectangle wich makes it way nicer
@@ -74,9 +97,9 @@ int main(int argc, char* argv[])
  */
 
                                 u8 a[3] = {
-/* (j - 1 % N) is a predescessor */     rows[i][(j - 1) % N], 
-/* of j in additive group mod N  */     rows[i][j],
-/* (j + 1) % 1 - successor of j  */     rows[i][(j + 1) % N]
+                                        rows[i][pred(j, N)], 
+                                        rows[i][j],
+                                        rows[i][succ(j, N)]
                                           };
 
                                 rows[i + 1][j] = rule(a, R);
