@@ -1,12 +1,12 @@
 A shell app for UNIX-like environmets that prints all 256 cellular automatons with beautiful ASCII characters.
 
-Compile main.c like:
+Compile like: 
 
-        $gcc main.c -o cell
+        $ gcc -Wall main.c rule.c -o cell
         
 Run it like:
 
-        $./cell 22 33 100
+        $ ./cell 22 33 100
         
 22 stands for rule 22. 
 Generally it's any 8 bit unsigned int. 
