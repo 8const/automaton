@@ -19,7 +19,7 @@ Probably you want it to be super huge like in thousands.
 It's an 8 bit unsigned int. 
 I generally use 200 on my laptop full screen with pretty small font.
 
-Running as in the example you should a nice Serpinsky triangle.
+Running as in the example you should see a nice Serpinsky triangle.
 
 A great short well-illustrated reference:
 
