@@ -1,8 +1,11 @@
-A shell app for UNIX-like environmets that prints all 256 cellular automatons with beautiful ASCII characters.
+There's a C app and also now a Haskell app they will do the same.
+Currently the Haskell version is a bit behind. I made it because it seems to be way easier to generalise the idea of neighborhood in Haskell from 3 points on top to something more interesting 
+
+A shell app (C version) that prints all 256 cellular automatons with beautiful ASCII characters.
 
 Compile like: 
 
-        $ gcc -Wall main.c rule.c -o cell
+        $ gcc main.c rule.c -o cell
         
 Run it like:
 
@@ -21,6 +24,6 @@ I generally use 200 on my laptop full screen with pretty small font.
 
 Running as in the example you should see a nice Serpinsky triangle.
 
-A great short well-illustrated reference:
+A great short well-illustrated reference I used:
 
         https://mathworld.wolfram.com/ElementaryCellularAutomaton.html
