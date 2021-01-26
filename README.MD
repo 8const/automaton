@@ -1,9 +1,9 @@
-There's a C app and also now a Haskell app they will do the same.
-Currently the Haskell version is a bit behind. I made it because it seems to be way easier to generalise the idea of neighborhood in Haskell from 3 points on top to something more interesting 
+A shell app that prints all 256 cellular automatons with beautiful ASCII characters.
+Implemented originaly in C because it has awesome bitwise features. 
+Later also in Haskell because I don't know it and because apperently it's awesome. 
+It seems like it's going to be very convenient for generalisin neighborhood when I get better at it.
 
-A shell app (C version) that prints all 256 cellular automatons with beautiful ASCII characters.
-
-Compile like: 
+C version - compile like: 
 
         $ gcc main.c rule.c -o cell
         
@@ -11,6 +11,11 @@ Run it like:
 
         $ ./cell 22 33 100
         
+   
+Haskell version - can be run with:
+
+        $ runhaskell 22 33 100
+
 22 stands for rule 22. 
 Generally it's any 8 bit unsigned int. 
 
